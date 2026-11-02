@@ -4,7 +4,7 @@ import os
 from defender import Defender
 from invader import Invader
 from barrier import Barrier
-from bullet import Bullets
+from bullet import Bullet
 
 BLOCK = 8
 DISPLAY_X, DISPLAY_Y = 1000, 750
@@ -32,6 +32,12 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.type.key == pygame.K_Q:
                 running = False
+            if event.key == pygame.K_LEFT:
+                Defender.move("left")
+            if event.key == pygame.K_RIGHT:
+                Defender.move("right")
+            if event.key == pygame.K_SPACE:
+                Defender.shoot()
 
     # draw background
     screen.blit(bg, (0, 0))
