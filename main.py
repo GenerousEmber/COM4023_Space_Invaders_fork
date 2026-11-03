@@ -17,6 +17,10 @@ screen = pygame.display.set_mode((DISPLAY_X, DISPLAY_Y))
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 36)
 big_font = pygame.font.Font(None, 80)
+defender = Defender()
+invader = Invader()
+barrier = Barrier()
+bullet = Bullet()
 
 game_over_text = None
 running = True
@@ -33,14 +37,24 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
+<<<<<<< HEAD
             if event.key == pygame.K_q:
                 running = False
+=======
+            if event.type.key == pygame.K_q:
+                running = False
+            if event.key == pygame.K_LEFT:
+                defender.move("left")
+            if event.key == pygame.K_RIGHT:
+                defender.move("right")
+>>>>>>> d38d881e635b34b4d528076679415bad41bbe0e2
             if event.key == pygame.K_SPACE:
-                Defender.shoot()
+                defender.shoot()
 
     # draw background
     screen.blit(bg, (0, 0))
 
+<<<<<<< HEAD
     #if not game_over_text:
         #Invader.update_all(screen)
         # Copy with list() because bullets remove themselves from Bullet.bullets while we loop
@@ -57,6 +71,24 @@ while running:
         #Invader.draw_all(screen)
     player.update(screen)
     for barrier in Barrier.barriers:
+=======
+    if not game_over_text:
+        invader.update_all(screen)
+        # Copy with list() because bullets remove themselves from Bullet.bullets while we loop
+        for bullet in list(bullet.bullets):
+            bullet.update(screen)
+
+        if defender.lives <= 0 or any(
+            i.rect.bottom >= defender.rect.top for i in invader.invaders
+        ):
+            game_over_text = "GAME OVER"
+        elif not invader.invaders:
+            game_over_text = "YOU WIN!"
+
+    invader.draw_all(screen)
+    defender.update(screen)
+    for barrier in barrier.barriers:
+>>>>>>> d38d881e635b34b4d528076679415bad41bbe0e2
         barrier.update(screen)
     #draw_hud(screen)
 
