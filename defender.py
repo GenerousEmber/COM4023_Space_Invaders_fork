@@ -3,10 +3,10 @@ import os
 ASSETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assests")
 
 class Defender:
-    def __init__(self, dis_x, dis_y):
+    def __init__(self, dis_x, dis_y, speed, lives):
         pass
-        self.lives = 3
-        self.speed = 5
+        self.lives = lives
+        self.speed = speed
         img =  pygame.image.load(ASSETS + "/images/defender.png").convert_alpha()
         self.image = pygame.transform.scale(img, (100, 60))
         self.rect = self.image.get_rect()
@@ -28,7 +28,9 @@ class Defender:
     
 
     def shoot(self):
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    pass #call bullet class
 
-    def hit(self):
-        pass
+
