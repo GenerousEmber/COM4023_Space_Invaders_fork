@@ -3,14 +3,14 @@ import os
 ASSETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assests")
 
 class Defender:
-    def __init__(self):
+    def __init__(self, dis_x, dis_y):
         pass
         self.lives = 3
         self.speed = 5
         img =  pygame.image.load(ASSETS + "/images/defender.png").convert_alpha()
         self.image = pygame.transform.scale(img, (100, 60))
         self.rect = self.image.get_rect()
-        self.rect.center = (100 , 100)
+        self.rect.center = (dis_x // 2 , dis_y - 10)
                 
     def update(self, screen):
         self.move(screen)
@@ -22,10 +22,6 @@ class Defender:
             self.rect.x -= self.speed
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.rect.x += self.speed
-        if keys[pygame.K_UP] or keys[pygame.K_w]:
-            self.rect.y -= self.speed
-        if keys[pygame.K_DOWN] or keys[pygame.K_s]:
-            self.rect.y += self.speed
         
             
         self.rect.clamp_ip(screen.get_rect())
